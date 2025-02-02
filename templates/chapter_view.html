@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block title %}فصول المادة{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-md-3 bg-light sidebar">
+            <h5 class="text-center mt-3">ترتيب الفصول</h5>
+            <ul class="list-group">
+                {% for parent in chapters %}
+                <li class="list-group-item">
+                    <a class="fw-bold text-dark" data-bs-toggle="collapse" href="#chapter-{{ parent.id }}" role="button" aria-expanded="false" aria-controls="chapter-{{ parent.id }}">
+                        {{ parent.name }}
+                    </a>
+                    <div class="collapse" id="chapter-{{ parent.id }}">
+                        <ul class="list-group mt-2">
+                            {% for child in parent.children %}
+                            <li class="list-group-item">
+                                <a href="{{ url_for('view_section', section_id=child.id) }}" class="text-primary">
+                                    {{ child.name }}
+                                </a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="col-md-9">
+            <div class="content-area p-4" style="background-color: #f9f9f9; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+                {% if selected_section %}
+                <h3>{{ selected_section.name }}</h3>
+                <div id="content" class="p-3">
+                    <p style="font-size: 18px; line-height: 1.8;">
+                        <b>قاعدة القلقلة:</b> القلقلة هي صفة صوتية تلزم عند النطق بالحروف التالية: 
+                        <span class="highlight">ق</span>, <span class="highlight">ط</span>, <span class="highlight">ب</span>, <span class="highlight">ج</span>, <span class="highlight">د</span>. 
+                        تُنطق الحروف عند السكون أو الوقف، ويكون الصوت قريبًا إلى الحركة.
+                    </p>
+                    <p>مثال: كلمة <span class="example">"أَقْطَعْ"</span> حيث تظهر القلقلة عند الحرف <span class="highlight">ق</span>.</p>
+                    <button id="play-audio" class="btn btn-primary mt-3">🔊 استمع للشرح</button>
+                </div>
+                {% else %}
+                <h3>مرحباً بك</h3>
+                <p>يرجى اختيار قسم من الشريط الجانبي لعرض المحتوى.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const playButton = document.getElementById("play-audio");
+    if (playButton) {
+        playButton.addEventListener("click", function () {
+            const content = document.getElementById("content").innerText;
+            const utterance = new SpeechSynthesisUtterance(content);
+            utterance.lang = "ar-SA"; // اختيار اللغة العربية
+            speechSynthesis.speak(utterance);
+        });
+    }
+});
+</script>
+
+<style>
+.highlight {
+    color: #d9534f;
+    font-weight: bold;
+}
+.example {
+    color: #5bc0de;
+    font-style: italic;
+}
+</style>

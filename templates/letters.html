@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تعليم الحروف</title>
+    <style>
+        body {
+            font-family: 'Amiri', serif;
+            text-align: center;
+            direction: rtl;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .letter-button {
+            font-size: 120px;
+            color: #007bff;
+            font-weight: bold;
+            cursor: pointer;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            display: inline-block;
+            margin: 50px auto;
+        }
+
+        .letter-button:hover {
+            opacity: 0.6;
+        }
+
+        .letter-button:active {
+            transform: scale(0.9);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="letter-container">
+        <!-- النص الذي يعمل كزر -->
+        <span id="letter" class="letter-button">بَ</span>
+    </div>
+
+    <script>
+        // إضافة وظيفة تشغيل الصوت عند الضغط
+        document.getElementById("letter").addEventListener("click", function () {
+            const audio = new Audio('https://www.soundjay.com/button/beep-07.wav'); // رابط ملف صوتي
+            audio.play();
+
+            // مثال لإضافة صوت منطوق للحرف
+            const speech = new SpeechSynthesisUtterance("بَاء");
+            speech.lang = "ar-SA";
+            speechSynthesis.speak(speech);
+        });
+    </script>
+
+</body>
+</html>

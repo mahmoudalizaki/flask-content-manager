@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block title %}الرئيسية{% endblock %}
+
+{% block content %}
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="{{ url_for('static', filename='images/qr.jpg') }}" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>أهلاً بك في موقعنا التعليمي</h5>
+                <p>ابدأ رحلتك التعليمية الآن.</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="{{ url_for('static', filename='images/tj.jpg') }}" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>تعلم قواعد التجويد بسهولة</h5>
+                <p>مواد تعليمية تفاعلية ومميزة.</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="{{ url_for('static', filename='images/ar.jpg') }}" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>اللغة العربية بكل جمالها</h5>
+                <p>دروس شيقة في النحو والصرف.</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="{{ url_for('static', filename='images/is.jpg') }}" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>المواد الإسلامية بشكل آخر</h5>
+                <p>دروس ومحاضرات ميسرة للطلاب والطالبات.</p>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">السابق</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">التالي</span>
+    </button>
+</div>
+
+<h2 class="text-center section-title">أقسام الموقع</h2>
+<div class="row g-4">
+    <div class="col-md-4">
+        <div class="card text-center">
+            <div class="card-body">
+                <h5 class="card-title">علم التجويد</h5>
+                <p class="card-text">تعلم قواعد التجويد بأسلوب بسيط وسهل.</p>
+                <a href="{{ url_for('tajweed') }}" class="btn btn-primary">ابدأ الآن</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-center">
+            <div class="card-body">
+                <h5 class="card-title">اللغة العربية</h5>
+                <p class="card-text">اكتشف جمال اللغة العربية مع دروس تفاعلية.</p>
+                <a href="{{ url_for('arabic') }}" class="btn btn-primary">ابدأ الآن</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-center">
+            <div class="card-body">
+                <h5 class="card-title">العلوم الإسلامية</h5>
+                <p class="card-text">تعرف على أصول الفقه والسيرة النبوية.</p>
+                <a href="{{ url_for('islamic') }}" class="btn btn-primary">ابدأ الآن</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

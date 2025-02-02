@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}تسجيل حساب جديد{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h2 class="text-center mb-4">تسجيل حساب جديد</h2>
+                <form method="POST" action="{{ url_for('register') }}">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">اسم المستخدم</label>
+                        <input type="text" name="username" id="username" class="form-control" placeholder="أدخل اسم المستخدم" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">البريد الإلكتروني</label>
+                        <input type="email" name="email" id="email" class="form-control" placeholder="أدخل بريدك الإلكتروني" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">كلمة المرور</label>
+                        <input type="password" name="password" id="password" class="form-control" placeholder="أدخل كلمة المرور" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="confirm_password" class="form-label">تأكيد كلمة المرور</label>
+                        <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="أعد إدخال كلمة المرور" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="role" class="form-label">نوع الحساب</label>
+                        <select name="role" id="role" class="form-select" required>
+                            <option value="">اختر نوع الحساب</option>
+                            <option value="student">طالب</option>
+                            <option value="teacher">معلم</option>
+                            <option value="parent">ولي أمر</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">تسجيل الحساب</button>
+                </form>
+                <div class="text-center mt-3">
+                    <p>لديك حساب بالفعل؟ <a href="{{ url_for('login') }}">قم بتسجيل الدخول</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
